@@ -73,10 +73,6 @@ public class UserModel implements Serializable {
     @TableField("status")
     private Integer status;
 
-    @ApiModelProperty(value = "用户所属部门，多个部门id之间用|线分隔")
-    @TableField("dept")
-    private String dept;
-
     @ApiModelProperty(value = "创建人")
     @TableField("create_by")
     private String createBy;
@@ -119,8 +115,6 @@ public class UserModel implements Serializable {
     public static final String NATION = "nation";
 
     public static final String STATUS = "status";
-
-    public static final String DEPT = "dept";
 
     public static final String CREATE_BY = "create_by";
 

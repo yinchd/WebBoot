@@ -18,11 +18,11 @@ spring:
     druid:
       driver-class-name: com.mysql.cj.jdbc.Driver
       # 这里填上你自己的数据库地址及账号密码信息（账号密码我使用了Druid的加密）
-      url: jdbc:mysql://172.16.119.238:3306/sa?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+      url: jdbc:mysql://172.16.8.50:33014/rencai?useUnicode=true&zeroDateTimeBehavior=convertToNull&autoReconnect=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
       username: root
-      password: UhEfRcIkojy1LTHo3DjNyEXdGTEXo7+DPBc9MUL1s+SAvnhC1T3/m+HvAXZlP5fAMRWvN90r/iLdZCw2cUJSQw==
+      password: C8vBL0N5n0y67z/HvYlqWms5LCn9kLaP8B/dy+PxBXSGk6LHB3xeQLIgrd9b6m7hCzTxfRM0XCBdP0roPSwYXQ==
       # java -cp druid-1.2.5.jar com.alibaba.druid.filter.config.ConfigTools [your password] （注：如果不想加密，把下面publicKey和connection-properties两项移除，密码改回明文即可）
-      key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAK4WBLffpE4jIjSrBLp1Uh3YOm3OOBC1HjMqHhbHHGKr7QiZ1H06IXVQAg4yoVuv3lfG0i2k29WkgvqNh9hLPBcCAwEAAQ==
+      key: MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAK6xPi48lxJjOfBH8DwU33zMS352HyPsFNcbanxWeMzmjIXbWekklJ3QQiuEqU3Sa7bkvDBmop6tBq9WAZYuWEECAwEAAQ==
       connection-properties: "druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000;config.decrypt=true;config.decrypt.key=${spring.datasource.druid.key}"
       initial-size: 1
       max-active: 20
@@ -37,7 +37,7 @@ spring:
       async-init: true
       web-stat-filter:
         enabled: true
-        exclusions: "*.js, *.gif, *.jpg, *.png, *.css, *.ico, /v2/*, /swagger*, /druid/*"
+        exclusions: "*.js, *.gif, *.jpg, *.png, *.css, *.ico, /v2/*, /swagger*, /druid/*, /doc.html"
       stat-view-servlet:
         enabled: true
         login-username: druid
@@ -79,28 +79,9 @@ web:
       secure: false
       # 文件桶信息
       bucketName: tank
-    fdfs: # fastdfs文件服务器
-      server-url: http://172.16.121.4:8080/
-      so-timeout: 5000
-      connect-timeout: 5000
-      thumb-image: #缩略图生成参数
-        width: 150
-        height: 150
-      tracker-list: #TrackerList参数,支持多个
-        - 172.16.121.4:22122
 
 # 日志配置
 logging:
   config: classpath:logback-spring.xml
   level:
     io.swagger.models.parameters.AbstractSerializableParameter: error
-
-# es配置
-elasticsearch:
-  schema: http
-  address: 172.16.121.4:9200
-  connectTimeout: 5000
-  socketTimeout: 5000
-  connectionRequestTimeout: 5000
-  maxConnectNum: 100
-  maxConnectPerRoute: 100
